@@ -198,7 +198,7 @@ const updateBlog = async function (req, res) {
             }
         }
 
-        const updatedBlog = await blogModel.findOneAndUpdate({ _id: blogId }, updateBlogData, { new: true })
+        const updatedBlog = await blogModel.findOneAndUpdate({ _id: blogId }, updatedBlogData, { new: true })
         res.status(200).send({ status: true, message: 'Blog Updated Successfully', data: updatedBlog })
 
     } catch (error) {

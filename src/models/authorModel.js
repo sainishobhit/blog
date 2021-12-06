@@ -19,7 +19,7 @@ const authorSchema = new mongoose.Schema({
         lowercase: true,
         unique: true,
         required: ' Email Address is Required',
-        validate: { validator: validator.validateEmail, message: 'Please enter a valid Email Address', isAsync: false },
+        validate: { validator: validator.validateEmail, message: 'Please enter a valid Email Address' },
         match: [validator.emailRegex, 'Please Fill a valid email address']
     },
     password: {
@@ -29,4 +29,4 @@ const authorSchema = new mongoose.Schema({
     }
 }, { timestamps: true })
 
-module.exports = mongoose.model('Author', authorSchema, 'authors')
+module.exports = mongoose.model('author', authorSchema)

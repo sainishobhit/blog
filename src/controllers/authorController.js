@@ -11,9 +11,7 @@ const registerAuthor = async function (req, res) {
             return
         }
 
-        // extract params
-
-        const { fname, lname, title, email, password } = requestBody; //Object Destructuring
+        const { fname, lname, title, email, password } = requestBody;
 
         if (!validator.isValid(fname)) {
             res.status(400).send({ status: false, message: 'first name is required' })
@@ -40,7 +38,7 @@ const registerAuthor = async function (req, res) {
             return
         }
 
-        if (!validator.isValidEmail(email)) {
+        if (!validator.validateEmail(email)) {
             res.status(400).send({ status: false, message: 'email is invalid' })
             return
         }
@@ -50,7 +48,7 @@ const registerAuthor = async function (req, res) {
             return
         }
 
-        const isEmailAlreadyUsed = await authorModel.find({ email });
+        const isEmailAlreadyUsed = await authorModel.findOne({ email });
 
         if (isEmailAlreadyUsed) {
             res.status(400).send({ status: false, message: `${email} is already registered` })
@@ -83,7 +81,7 @@ const loginAuthor = async function (req, res) {
             return
         }
 
-        if (!validator.isValidEmail(email)) {
+        if (!validator.validateEmail(email)) {
             res.status(400).send({ status: false, message: 'email is invalid' })
             return
         }
